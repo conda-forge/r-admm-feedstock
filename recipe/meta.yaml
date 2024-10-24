@@ -54,6 +54,7 @@ requirements:
     - r-rdpack
     - r-doparallel
     - r-foreach
+    - libgomp          # [win]
 
 test:
   commands:
