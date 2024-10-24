@@ -1,6 +1,5 @@
 {% set version = '0.3.3' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-admm
@@ -13,8 +12,7 @@ source:
   sha256: 1618e822808c68ec76f9060dc39c6ac2cc6f5dff0603a0359f727490bf8d7111
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -27,6 +25,7 @@ requirements:
   build:
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
@@ -45,18 +44,16 @@ requirements:
     - r-foreach
     - libblas
     - liblapack
-    - libgomp          # [linux]
+    - libgomp          # [not osx]
     - llvm-openmp      # [osx]
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-matrix
     - r-rcpp
     - r-rcpparmadillo
     - r-rdpack
     - r-doparallel
     - r-foreach
-    - {{ native }}libwinpthread-git  # [win]
 
 test:
   commands:
