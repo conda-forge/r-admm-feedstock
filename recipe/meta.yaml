@@ -12,7 +12,7 @@ source:
   sha256: 1618e822808c68ec76f9060dc39c6ac2cc6f5dff0603a0359f727490bf8d7111
 
 build:
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
@@ -36,6 +36,12 @@ requirements:
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-matrix                     # [build_platform != target_platform]
+    - r-rcpp                       # [build_platform != target_platform]
+    - r-rcpparmadillo              # [build_platform != target_platform]
+    - r-rdpack                     # [build_platform != target_platform]
+    - r-doparallel                 # [build_platform != target_platform]
+    - r-foreach                    # [build_platform != target_platform]
   host:
     - r-base
     - r-matrix
@@ -69,7 +75,6 @@ about:
   summary: Provides algorithms to solve popular optimization problems in statistics such as regression
     or denoising based on Alternating Direction Method of Multipliers (ADMM). See Boyd
     et al (2010) <doi:10.1561/2200000016> for complete introduction to the method.
-  license_family: GPL3
   license_file:
     - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
     
